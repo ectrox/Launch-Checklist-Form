@@ -23,4 +23,3 @@ formSubmit.addEventListener('click',function(event) {
       event.preventDefault();
    }
 });
-console.log(pilotName.value);
