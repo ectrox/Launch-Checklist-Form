@@ -44,15 +44,15 @@ formSubmit.addEventListener('click',function(event) {
       event.preventDefault();
    } isNameValid();
    // updating shuttle requirements
-   pilotStatus.innerHTML = `${pilotName.value} ` + pilotStatus;
-   copilotStatus.innerHTML = `${copilotName.value} ` + copilotStatus;
+   pilotStatus.innerHTML = `${pilotName.value} `;
+   copilotStatus.innerHTML = `${copilotName.value} `;
    if (Number(fuelLevel.value) < 10000) {
       faultyItems.style.visibility = 'visible';
       fuelStatus.innerHTML = `WARNING! Not enough fuel`;
       launchStatus.innerHTML = `Shuttle not ready for launch`;
       launchStatus.style.color = 'red';
    };
-
+   event.preventDefault();
 });
 
 
