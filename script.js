@@ -1,5 +1,3 @@
-// Write your JavaScript code here!
-
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
 <ol>
@@ -11,6 +9,7 @@
 </ol>
 <img src="${}">
 */
+
 const pilotName = document.getElementById('pilotName');
 const copilotName = document.getElementById('copilotName');
 const fuelLevel = document.getElementById('fuelLevel');
@@ -44,15 +43,26 @@ formSubmit.addEventListener('click',function(event) {
       event.preventDefault();
    } isNameValid();
    // updating shuttle requirements
-   pilotStatus.innerHTML = `${pilotName.value} `;
-   copilotStatus.innerHTML = `${copilotName.value} `;
+   pilotStatus.innerHTML = `Pilot: ${pilotName.value} `;
+   copilotStatus.innerHTML = `Copilot: ${copilotName.value} `;
    if (Number(fuelLevel.value) < 10000) {
       faultyItems.style.visibility = 'visible';
       fuelStatus.innerHTML = `WARNING! Not enough fuel`;
       launchStatus.innerHTML = `Shuttle not ready for launch`;
       launchStatus.style.color = 'red';
-   };
-   event.preventDefault();
+   } if (Number(cargoMass.value) > 10000) {
+      faultyItems.style.visibility = 'visible';
+      cargoStatus.innerHTML = `WARNING! Cargo mass too high for launch`;
+      launchStatus.innerHTML = `Shuttle not ready for launch`;
+      launchStatus.style.color = 'red';
+   } if (Number(fuelLevel.value) >= 10000 && Number(cargoMass.value) <= 10000) {
+      faultyItems.style.visibility = 'visible';
+      cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+      launchStatus.innerHTML = `Shuttle ready for launch`;
+      launchStatus.style.color = 'green';
+   } event.preventDefault();
+   // fetch data from json
+   
 });
 
 
