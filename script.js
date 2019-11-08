@@ -1,15 +1,3 @@
-/* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
-</ol>
-<img src="${}">
-*/
-
 const pilotName = document.getElementById('pilotName');
 const copilotName = document.getElementById('copilotName');
 const fuelLevel = document.getElementById('fuelLevel');
@@ -21,6 +9,7 @@ const fuelStatus = document.getElementById('fuelStatus');
 const cargoStatus = document.getElementById('cargoStatus');
 const faultyItems = document.getElementById('faultyItems');
 const launchStatus = document.getElementById('launchStatus');
+const missionTarget = document.getElementById('missionTarget');
 
 function isNameValid() {
    let valid = /^[A-Za-z]+$/;
@@ -32,6 +21,8 @@ function isNameValid() {
       return false;
    };
 };
+
+
 
 formSubmit.addEventListener('click',function(event) {
    // text & number validation
@@ -61,10 +52,23 @@ formSubmit.addEventListener('click',function(event) {
       launchStatus.innerHTML = `Shuttle ready for launch`;
       launchStatus.style.color = 'green';
    } event.preventDefault();
-   // fetch data from json
-   
+});   
+
+formSubmit.addEventListener('click', function() {
+   let json = [];
+   fetch('https://handlers.education.launchcode.org/static/planets.json').then(function(response) {
+      response.json().then(function(json) {
+         missionTarget.innerHTML = `
+         <h2>Mission Destination</h2>
+         <ol>
+            <li>Name: ${json[2].name}</li>
+            <li>Diameter: ${json[2].diameter}</li>
+            <li>Star: ${json[2].star}</li>
+            <li>Distance from Earth: ${json[2].distance}</li>
+            <li>Number of Moons: ${json[2].moons}</li>
+         </ol>
+         <img src="${json[2].image}">`
+      });
+   });
+   event.preventDefault();
 });
-
-
-
-
