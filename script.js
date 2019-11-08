@@ -17,25 +17,27 @@ const fuelLevel = document.getElementById('fuelLevel');
 const cargoMass = document.getElementById('cargoMass');
 const formSubmit = document.getElementById('formSubmit');
 
-
+function isNameValid() {
+   let valid = /^[A-Za-z]+$/;
+   if (copilotName.value.match(valid) && pilotName.value.match(valid)) {
+      return true;
+   } else {
+      alert('Please enter a valid name (letters A-Z only)');
+      event.preventDefault();
+      return false;
+   };
+};
 
 formSubmit.addEventListener('click',function(event) {
-   
-   
-   function isValid() {
-      let invalid = ['1','2','3','4','5','6','7','8','9','0'];
-   
-   };
    if (pilotName.value ==='' || copilotName.value==='' || fuelLevel.value==='' || cargoMass.value==='') {
       alert('All field are required!');
       event.preventDefault();
    } if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
       alert('Please enter a valid number');
       event.preventDefault();
-   } /*if (pilotName.value || copilotName.value ) {
-      alert('Please enter a valid name');
-      event.preventDefault();
-   } */
+   } isNameValid();
 });
+
+
 
 
